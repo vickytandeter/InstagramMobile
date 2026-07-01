@@ -1,0 +1,93 @@
+header{
+    width: 95%;
+    margin: 0 auto;
+    height: 80px;
+    background-color: #0b0033;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 42px;
+    font-weight: bold;
+    margin: 0;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+header h1 svg{
+    font-size: 38px;
+}
+
+header form{
+    width: 350px;
+}
+
+header .headerIcons{
+    margin-left: 5%;
+    margin-right: 1%;
+}
+
+header .buscar{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0 40px;
+}
+
+header div{
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+header input{
+    width: 100%;
+    background-color: #1b2a5a;
+    border: none;
+    outline: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+header input::placeholder{
+    color: #c7c7c7;
+}
+
+header button{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newPost button{
+    background: linear-gradient(90deg, #ff3d77, #7a5cff);
+    border-radius: 10px;
+    padding: 5%;
+    font-size: 22px;
+    font-weight: bold;
+    gap: 10px;
+    width: 140%;
+}
+
+.headerIcons{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

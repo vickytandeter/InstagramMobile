@@ -1,0 +1,59 @@
+.publicacion{
+    background-color: #020631;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    break-inside: avoid;
+    cursor: pointer;
+}
+
+.publicacionImg{
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.publicacionDesc{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+}
+
+.publicacionUsuario{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fotoPerfil{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.publicacionUsuario p{
+    color: white;
+    font-size: 0.8rem;
+}
+
+.publicacionInteracciones{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.publicacionInteracciones button{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.publicacionInteracciones button:hover{
+    transform: scale(1.1);
+}

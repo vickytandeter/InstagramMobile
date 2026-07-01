@@ -1,0 +1,60 @@
+.listaHistorias{
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+.historias{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.historia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 125px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.historiaImg{
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    padding: 3px;
+
+    background:
+        linear-gradient(#020631, #020631) padding-box,
+        linear-gradient(
+            45deg,
+            #feda75,
+            #fa7e1e,
+            #d62976,
+            #962fbf,
+            #4f5bd5
+        ) border-box;
+
+    border: 3px solid transparent;
+}
+
+.historia .publicacionUsuario{
+    margin-top: 10px;
+}
+
+.historia .publicacionUsuario p{
+    font-size: 0.75rem;
+    color: white;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 0.9;
+}
