@@ -1,4 +1,4 @@
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from "@expo/vector-icons";
 
@@ -7,7 +7,7 @@ function Footer(){
     const navigation = useNavigation();
 
     return(
-        <View>
+        <View style = {styles.footer}>
             <TouchableOpacity
                 onPress={() => navigation.navigate('')}
                 accessibilityLabel="Continuar"
@@ -36,14 +36,22 @@ function Footer(){
                 onPress={() => navigation.navigate('')}
                 accessibilityLabel="Continuar"
             >
-                <Image
+                <Text>Img</Text>
+                {/* <Image
                     source={require('../../../img/fotoPerfil.png')}
                     style={{ width: 80, height: 80 }}
                     accessibilityLabel="fotoPerfil"
-                />
+                /> */}
             </TouchableOpacity>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+
+    footer: {
+        backgroundColor: "#000000",
+    },
+});
 
 export default Footer;

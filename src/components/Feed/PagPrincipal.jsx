@@ -1,6 +1,6 @@
-import {
-    View
-} from 'react-native';
+import {View, Text} from 'react-native';
+import Header from "../Header";
+import Footer from "../Footer";
 
 function PagPrincipal(){
 
@@ -8,6 +8,7 @@ function PagPrincipal(){
 
         <View>
             <Header/>
+            <Text>Feed</Text>
             <Footer/>
         </View>
     );
