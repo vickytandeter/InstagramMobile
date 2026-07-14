@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import PagPerfil from '../Perfil/PagPerfil';
-import DetallePublicacion from '../Perfil/DetallePublicacion';
+import FeedPerfil from '../Perfil/FeedPerfil';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,11 +16,7 @@ function App() {
 
         <Stack.Screen name="Perfil" component={PagPerfil} />
 
-        <Stack.Screen
-          name="DetallePublicacion"
-          component={DetallePublicacion}
-          options={{ presentation: 'transparentModal', animation: 'fade' }}
-        />
+        <Stack.Screen name="FeedPerfil" component={FeedPerfil} />
       </Stack.Navigator>
     </NavigationContainer>
   );

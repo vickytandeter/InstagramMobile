@@ -1,47 +1,26 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
-const PERFIL_HARDCODEADO = {
-  usuario: 'vickytandet...',
+// Se exporta para que otras pantallas (como el feed) puedan usar el mismo
+// usuario/avatar sin repetir los datos hardcodeados en dos lugares.
+export const PERFIL_HARDCODEADO = {
+  usuario: 'vickytandeter',
   nombre: 'vicky',
   fotoUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80',
-  handle: '@villamalcolmfutsal',
+  handle: 'amante de los gatos',
   publicaciones: 1,
   seguidores: 453,
   seguidos: 656,
-  historiaActiva: 'No me decido...',
 };
 
 export default function InfoPerfil({ perfil = PERFIL_HARDCODEADO }) {
   return (
     <View style={styles.contenedor}>
-      {/* Barra superior */}
-      <View style={styles.barraSuperior}>
-        <Ionicons name="add" size={26} color="#fff" />
-
-        <TouchableOpacity style={styles.usuarioBoton} activeOpacity={0.7}>
-          <Ionicons name="lock-closed" size={13} color="#fff" style={styles.iconoCandado} />
-          <Text style={styles.usuarioTexto} numberOfLines={1}>
-            {perfil.usuario}
-          </Text>
-          <Ionicons name="chevron-down" size={16} color="#fff" />
-        </TouchableOpacity>
-
-        <View style={styles.iconosDerecha}>
-          <Ionicons name="at-circle-outline" size={24} color="#fff" style={styles.iconoThreads} />
-          <Feather name="menu" size={24} color="#fff" />
-        </View>
-      </View>
 
       {/* Avatar + nombre + estadísticas */}
       <View style={styles.filaPerfil}>
         <View style={styles.avatarContenedor}>
-          <View style={styles.tooltip}>
-            <Text style={styles.tooltipTexto} numberOfLines={1}>
-              {perfil.historiaActiva}
-            </Text>
-          </View>
 
           <View style={styles.anilloHistoria}>
             <Image source={{ uri: perfil.fotoUrl }} style={styles.avatar} />
@@ -99,34 +78,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingTop: 8,
   },
-  barraSuperior: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  usuarioBoton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexShrink: 1,
-    marginHorizontal: 8,
-  },
-  iconoCandado: {
-    marginRight: 4,
-  },
-  usuarioTexto: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '600',
-    marginRight: 2,
-    maxWidth: 160,
-  },
-  iconosDerecha: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  iconoThreads: {
-    marginRight: 16,
-  },
   filaPerfil: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -135,21 +86,6 @@ const styles = StyleSheet.create({
   avatarContenedor: {
     width: AVATAR_TAMANIO + 12,
     alignItems: 'center',
-  },
-  tooltip: {
-    position: 'absolute',
-    top: -34,
-    left: -18,
-    backgroundColor: '#3a3a3c',
-    borderRadius: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    zIndex: 2,
-    maxWidth: 110,
-  },
-  tooltipTexto: {
-    color: '#e4e4e4',
-    fontSize: 12,
   },
   anilloHistoria: {
     width: AVATAR_TAMANIO,

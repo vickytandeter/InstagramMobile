@@ -11,7 +11,7 @@ export default function Publicacion({ publicacion, onPress }) {
       activeOpacity={0.8}
       onPress={() => onPress && onPress(publicacion)}
     >
-      <Image source={{ uri: publicacion.imageUrl }} style={styles.imagen} />
+      <Image source={{ uri: publicacion.url }} style={styles.imagen} />
     </TouchableOpacity>
   );
 }
