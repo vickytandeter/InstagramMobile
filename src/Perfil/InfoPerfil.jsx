@@ -1,0 +1,240 @@
+import React from 'react';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons, Feather } from '@expo/vector-icons';
+
+const PERFIL_HARDCODEADO = {
+  usuario: 'vickytandet...',
+  nombre: 'vicky',
+  fotoUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80',
+  handle: '@villamalcolmfutsal',
+  publicaciones: 1,
+  seguidores: 453,
+  seguidos: 656,
+  historiaActiva: 'No me decido...',
+};
+
+export default function InfoPerfil({ perfil = PERFIL_HARDCODEADO }) {
+  return (
+    <View style={styles.contenedor}>
+      {/* Barra superior */}
+      <View style={styles.barraSuperior}>
+        <Ionicons name="add" size={26} color="#fff" />
+
+        <TouchableOpacity style={styles.usuarioBoton} activeOpacity={0.7}>
+          <Ionicons name="lock-closed" size={13} color="#fff" style={styles.iconoCandado} />
+          <Text style={styles.usuarioTexto} numberOfLines={1}>
+            {perfil.usuario}
+          </Text>
+          <Ionicons name="chevron-down" size={16} color="#fff" />
+        </TouchableOpacity>
+
+        <View style={styles.iconosDerecha}>
+          <Ionicons name="at-circle-outline" size={24} color="#fff" style={styles.iconoThreads} />
+          <Feather name="menu" size={24} color="#fff" />
+        </View>
+      </View>
+
+      {/* Avatar + nombre + estadísticas */}
+      <View style={styles.filaPerfil}>
+        <View style={styles.avatarContenedor}>
+          <View style={styles.tooltip}>
+            <Text style={styles.tooltipTexto} numberOfLines={1}>
+              {perfil.historiaActiva}
+            </Text>
+          </View>
+
+          <View style={styles.anilloHistoria}>
+            <Image source={{ uri: perfil.fotoUrl }} style={styles.avatar} />
+          </View>
+
+          <TouchableOpacity style={styles.botonMas} activeOpacity={0.7}>
+            <Ionicons name="add" size={16} color="#000" />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.infoDerecha}>
+          <Text style={styles.nombre}>{perfil.nombre}</Text>
+
+          <View style={styles.estadisticas}>
+            <View style={styles.estadisticaItem}>
+              <Text style={styles.estadisticaNumero}>{perfil.publicaciones}</Text>
+              <Text style={styles.estadisticaLabel}>publicaciones</Text>
+            </View>
+            <View style={styles.estadisticaItem}>
+              <Text style={styles.estadisticaNumero}>{perfil.seguidores}</Text>
+              <Text style={styles.estadisticaLabel}>seguidores</Text>
+            </View>
+            <View style={styles.estadisticaItem}>
+              <Text style={styles.estadisticaNumero}>{perfil.seguidos}</Text>
+              <Text style={styles.estadisticaLabel}>seguidos</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+
+      {/* Handle */}
+      <Text style={styles.handle}>{perfil.handle}</Text>
+
+      {/* Botones de acción */}
+      <View style={styles.botonesFila}>
+        <TouchableOpacity style={styles.botonAccion} activeOpacity={0.7}>
+          <Text style={styles.botonAccionTexto}>Editar perfil</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.botonAccion} activeOpacity={0.7}>
+          <Text style={styles.botonAccionTexto}>Compartir perfil</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.botonIcono} activeOpacity={0.7}>
+          <Ionicons name="person-add-outline" size={18} color="#fff" />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
+const AVATAR_TAMANIO = 88;
+
+const styles = StyleSheet.create({
+  contenedor: {
+    backgroundColor: '#000',
+    paddingHorizontal: 12,
+    paddingTop: 8,
+  },
+  barraSuperior: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  usuarioBoton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexShrink: 1,
+    marginHorizontal: 8,
+  },
+  iconoCandado: {
+    marginRight: 4,
+  },
+  usuarioTexto: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+    marginRight: 2,
+    maxWidth: 160,
+  },
+  iconosDerecha: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconoThreads: {
+    marginRight: 16,
+  },
+  filaPerfil: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  avatarContenedor: {
+    width: AVATAR_TAMANIO + 12,
+    alignItems: 'center',
+  },
+  tooltip: {
+    position: 'absolute',
+    top: -34,
+    left: -18,
+    backgroundColor: '#3a3a3c',
+    borderRadius: 14,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    zIndex: 2,
+    maxWidth: 110,
+  },
+  tooltipTexto: {
+    color: '#e4e4e4',
+    fontSize: 12,
+  },
+  anilloHistoria: {
+    width: AVATAR_TAMANIO,
+    height: AVATAR_TAMANIO,
+    borderRadius: AVATAR_TAMANIO / 2,
+    borderWidth: 2,
+    borderColor: '#555',
+    padding: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  avatar: {
+    width: '100%',
+    height: '100%',
+    borderRadius: (AVATAR_TAMANIO - 4) / 2,
+  },
+  botonMas: {
+    position: 'absolute',
+    bottom: 0,
+    right: 6,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#fff',
+    borderWidth: 2,
+    borderColor: '#000',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  infoDerecha: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  nombre: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: '700',
+    marginBottom: 10,
+  },
+  estadisticas: {
+    flexDirection: 'row',
+  },
+  estadisticaItem: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  estadisticaNumero: {
+    color: '#fff',
+    fontSize: 17,
+    fontWeight: '700',
+  },
+  estadisticaLabel: {
+    color: '#a8a8a8',
+    fontSize: 13,
+    marginTop: 2,
+  },
+  handle: {
+    color: '#5b8ff9',
+    fontSize: 14,
+    marginTop: 12,
+  },
+  botonesFila: {
+    flexDirection: 'row',
+    marginTop: 14,
+    marginBottom: 4,
+  },
+  botonAccion: {
+    flex: 1,
+    backgroundColor: '#262626',
+    borderRadius: 8,
+    paddingVertical: 7,
+    alignItems: 'center',
+    marginRight: 6,
+  },
+  botonAccionTexto: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  botonIcono: {
+    backgroundColor: '#262626',
+    borderRadius: 8,
+    paddingVertical: 7,
+    paddingHorizontal: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
