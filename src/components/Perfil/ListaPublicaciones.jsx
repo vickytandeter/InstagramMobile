@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, View, ActivityIndicator, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Publicacion from './PublicacionPerfil';
-import { searchPost } from '../services/api';
+import { searchPost } from '../../services/api';
 import { PERFIL_HARDCODEADO } from './InfoPerfil';
 
 export default function ListaPublicaciones() {
