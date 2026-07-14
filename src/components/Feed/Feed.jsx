@@ -3,6 +3,7 @@ import { View, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import Publicacion from './Publicacion';
 import Header from '../Header';
+import Footer from '../Footer';
 import Historias from './Historias';
 
 export default function Feed({ onSelect }) {
@@ -33,7 +34,7 @@ export default function Feed({ onSelect }) {
 
   return (
     <View style={styles.feed}>
-      <Header />
+      <Header/>
 
       {cargando ? (
         <View style={styles.loadingContainer}>
@@ -51,6 +52,8 @@ export default function Feed({ onSelect }) {
           contentContainerStyle={styles.listContent}
         />
       )}
+
+      <Footer/>
     </View>
   );
 }
