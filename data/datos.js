@@ -1,5 +1,5 @@
 
-const mockAuthors = [
+const datos = [
   {
     username: 'michi.oficial',
     avatar: 'https://i.pravatar.cc/150?img=1',
