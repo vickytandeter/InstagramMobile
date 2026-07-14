@@ -1,5 +1,5 @@
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import historias from '../data/historias';
+import historias from '../../data/historias';
 
 function Historia({ item }) {
   return (

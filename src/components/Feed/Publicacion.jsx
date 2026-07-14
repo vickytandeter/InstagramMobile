@@ -20,17 +20,18 @@ export default function Publicacion({ post, onSelect }) {
         style={styles.publicacion}
         onPress={() => onSelect && onSelect(post)}
       >
-        <Image source={{ uri: post.contenido }} style={styles.publicacionImg} />
-
-        <View style={styles.publicacionDesc}>
-          <View style={styles.publicacionUsuario}>
+        <View style={styles.publicacionUsuario}>
             <Image source={{ uri: post.fotoPerfil }} style={styles.fotoPerfil} />
             <View>
               <Text style={styles.usuario}>@{post.usuario}</Text>
               <Text style={styles.fecha}>{post.fecha}</Text>
             </View>
           </View>
+        
+        <Image source={{ uri: post.contenido }} style={styles.publicacionImg} />
 
+        <View style={styles.publicacionDesc}>
+          
           <Text style={styles.descripcion}>{post.descripcion}</Text>
 
           <View style={styles.publicacionInteracciones}>
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 6,
+    marginTop: 8,
   },
   fotoPerfil: {
     width: 32,

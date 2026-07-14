@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import Publicacion from './Publicacion';
-import Header from './Header';
+import Header from '../Header';
 import Historias from './Historias';
 
 export default function Feed({ onSelect }) {

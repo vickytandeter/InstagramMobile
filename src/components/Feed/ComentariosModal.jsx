@@ -12,7 +12,7 @@ import {
   Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import comentariosMock from '../data/comentarios';
+import comentariosMock from '../../data/comentarios';
 
 export default function ComentariosModal({ visible, onClose }) {
   const [comentarios, setComentarios] = useState(comentariosMock);
