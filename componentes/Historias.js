@@ -31,8 +31,9 @@ const styles = StyleSheet.create({
   lista: {
     paddingHorizontal: 10,
     paddingVertical: 12,
+    backgroundColor: '#000',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#dbdbdb',
+    borderBottomColor: '#262626',
   },
   item: {
     alignItems: 'center',
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     height: 62,
     borderRadius: 31,
     borderWidth: 2,
-    borderColor: '#dbdbdb',
+    borderColor: '#3a3a3a',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
   },
   nombre: {
     fontSize: 11,
-    color: '#262626',
+    color: '#f5f5f5',
     marginTop: 4,
     textAlign: 'center',
   },

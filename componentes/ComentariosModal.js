@@ -46,7 +46,7 @@ export default function ComentariosModal({ visible, onClose }) {
         <View style={styles.encabezado}>
           <Text style={styles.titulo}>Comentarios</Text>
           <TouchableOpacity onPress={onClose}>
-            <Ionicons name="close" size={24} color="#262626" />
+            <Ionicons name="close" size={24} color="#fff" />
           </TouchableOpacity>
         </View>
 
@@ -74,6 +74,7 @@ export default function ComentariosModal({ visible, onClose }) {
           <TextInput
             style={styles.input}
             placeholder="Agregá un comentario..."
+            placeholderTextColor="#8e8e8e"
             value={texto}
             onChangeText={setTexto}
           />
@@ -96,11 +97,11 @@ export default function ComentariosModal({ visible, onClose }) {
 const styles = StyleSheet.create({
   fondo: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: 'rgba(0,0,0,0.6)',
   },
   hoja: {
     height: '65%',
-    backgroundColor: '#fff',
+    backgroundColor: '#121212',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
   },
@@ -111,12 +112,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#dbdbdb',
+    borderBottomColor: '#262626',
   },
   titulo: {
     fontWeight: '600',
     fontSize: 14,
-    color: '#262626',
+    color: '#fff',
   },
   lista: {
     paddingHorizontal: 16,
@@ -138,10 +139,11 @@ const styles = StyleSheet.create({
   usuario: {
     fontWeight: '600',
     fontSize: 13,
-    color: '#262626',
+    color: '#fff',
   },
   texto: {
     fontWeight: '400',
+    color: '#f5f5f5',
   },
   inputRow: {
     flexDirection: 'row',
@@ -149,7 +151,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: '#dbdbdb',
+    borderTopColor: '#262626',
   },
   avatarInput: {
     width: 28,
@@ -160,7 +162,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 13,
-    color: '#262626',
+    color: '#fff',
   },
   publicar: {
     color: '#0095F6',
@@ -168,6 +170,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   publicarDisabled: {
-    color: '#b3dffb',
+    color: '#2a4a5f',
   },
 });

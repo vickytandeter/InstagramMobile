@@ -5,13 +5,13 @@ export default function Header() {
   return (
     <View style={styles.header}>
       <TouchableOpacity>
-        <Ionicons name="camera-outline" size={26} color="#262626" />
+        <Ionicons name="camera-outline" size={26} color="#fff" />
       </TouchableOpacity>
 
       <Text style={styles.logo}>Instagram</Text>
 
       <TouchableOpacity>
-        <Ionicons name="add-circle-outline" size={28} color="#262626" />
+        <Ionicons name="add-circle-outline" size={28} color="#fff" />
       </TouchableOpacity>
     </View>
   );
@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 10,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#dbdbdb',
-    backgroundColor: '#fff',
+    borderBottomColor: '#262626',
+    backgroundColor: '#000',
   },
   logo: {
     fontSize: 24,
     fontWeight: '700',
     fontStyle: 'italic',
-    color: '#262626',
+    color: '#fff',
   },
 });

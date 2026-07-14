@@ -37,7 +37,7 @@ export default function Feed({ onSelect }) {
 
       {cargando ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#262626" />
+          <ActivityIndicator size="large" color="#fff" />
         </View>
       ) : (
         <FlatList
@@ -58,7 +58,7 @@ export default function Feed({ onSelect }) {
 const styles = StyleSheet.create({
   feed: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
   },
   listContent: {
     paddingBottom: 20,
@@ -67,5 +67,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#000',
   },
 });

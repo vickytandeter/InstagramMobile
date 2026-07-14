@@ -38,7 +38,7 @@ export default function Publicacion({ post, onSelect }) {
               <Ionicons
                 name={liked ? 'heart' : 'heart-outline'}
                 size={22}
-                color={liked ? '#ED4956' : '#262626'}
+                color={liked ? '#ED4956' : '#fff'}
               />
               <Text style={styles.contador}>{likes}</Text>
             </TouchableOpacity>
@@ -47,12 +47,12 @@ export default function Publicacion({ post, onSelect }) {
               onPress={() => setMostrarComentarios(true)}
               style={styles.boton}
             >
-              <Ionicons name="chatbubble-outline" size={20} color="#262626" />
+              <Ionicons name="chatbubble-outline" size={20} color="#fff" />
               <Text style={styles.contador}>{post.comentarios}</Text>
             </TouchableOpacity>
 
             <View style={styles.boton}>
-              <Ionicons name="paper-plane-outline" size={20} color="#262626" />
+              <Ionicons name="paper-plane-outline" size={20} color="#fff" />
               <Text style={styles.contador}>{post.reenviados}</Text>
             </View>
           </View>
@@ -70,15 +70,15 @@ export default function Publicacion({ post, onSelect }) {
 const styles = StyleSheet.create({
   publicacion: {
     marginBottom: 14,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#dbdbdb',
+    borderBottomColor: '#262626',
     paddingBottom: 10,
   },
   publicacionImg: {
     width: '100%',
     aspectRatio: 1,
-    backgroundColor: '#efefef',
+    backgroundColor: '#1a1a1a',
   },
   publicacionDesc: {
     paddingHorizontal: 10,
@@ -95,20 +95,20 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     marginRight: 8,
     borderWidth: 1,
-    borderColor: '#dbdbdb',
+    borderColor: '#3a3a3a',
   },
   usuario: {
     fontWeight: '600',
     fontSize: 13,
-    color: '#262626',
+    color: '#fff',
   },
   fecha: {
     fontSize: 11,
-    color: '#8e8e8e',
+    color: '#a8a8a8',
   },
   descripcion: {
     fontSize: 13,
-    color: '#262626',
+    color: '#f5f5f5',
     marginBottom: 8,
   },
   publicacionInteracciones: {
@@ -122,6 +122,6 @@ const styles = StyleSheet.create({
   contador: {
     marginLeft: 4,
     fontSize: 12,
-    color: '#262626',
+    color: '#f5f5f5',
   },
 });

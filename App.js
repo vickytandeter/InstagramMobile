@@ -6,7 +6,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Feed onSelect={(post) => console.log('Post seleccionado:', post.id)} />
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 }
@@ -14,6 +14,6 @@ export default function App() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
   },
 });
