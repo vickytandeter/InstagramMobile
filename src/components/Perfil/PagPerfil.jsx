@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { ScrollView, SafeAreaView, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 import InfoPerfil, { PERFIL_HARDCODEADO } from './InfoPerfil';
@@ -31,7 +31,7 @@ export default function PagPerfil() {
   }, [usuario, fotoUrl, publicacionInicial]);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={styles.safeArea}>
       <ScrollView
         style={styles.scroll}
         showsVerticalScrollIndicator={false}
@@ -44,7 +44,7 @@ export default function PagPerfil() {
       </ScrollView>
 
       <Footer />
-    </SafeAreaView>
+    </View>
   );
 }
 

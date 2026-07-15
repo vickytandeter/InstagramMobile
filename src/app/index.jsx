@@ -13,6 +13,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#000' }}>
         <NavigationContainer>
           <StatusBar barStyle="light-content" backgroundColor="#000" />
 
@@ -26,6 +27,7 @@ function App() {
 
           </Stack.Navigator>
         </NavigationContainer>
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }

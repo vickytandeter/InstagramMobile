@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
+import { SafeAreaView, View, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import Publicacion from './Publicacion';
 import Header from '../Header';
 import Footer from '../Footer';
@@ -44,7 +44,7 @@ export default function Feed({ onSelect }) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={styles.safeArea}>
       <Header/>
 
       {cargando ? (
@@ -66,14 +66,14 @@ export default function Feed({ onSelect }) {
       )}
 
       <Footer/>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#000000',
   },
   lista: {
     flex: 1,
