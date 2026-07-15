@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 // Importación correcta y 100% compatible con Expo (Web, Android e iOS)
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { searchPost } from '../services/api';
 
-const Footer = ({ navigation }) => {
+const Footer = () => {
+  const navigation = useNavigation();
+  const [avatarUrl, setAvatarUrl] = useState(null);
+
+  useEffect(() => {
+    let activo = true;
+
+    searchPost('', 1)
+      .then(([gato]) => {
+        if (activo && gato) setAvatarUrl(gato.url);
+      })
+      .catch((error) => console.error('Error trayendo avatar del footer:', error));
+
+    return () => {
+      activo = false;
+    };
+  }, []);
+
   return (
     <View style={styles.footerContainer}>
       <View style={styles.footerContent}>
@@ -39,10 +58,11 @@ const Footer = ({ navigation }) => {
           activeOpacity={0.7}
         >
           <View style={styles.profileAvatarContainer}>
-            <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80' }} 
-              style={styles.profileAvatarImg}
-            />
+            {avatarUrl ? (
+              <Image source={{ uri: avatarUrl }} style={styles.profileAvatarImg} />
+            ) : (
+              <View style={[styles.profileAvatarImg, styles.profileAvatarPlaceholder]} />
+            )}
           </View>
         </TouchableOpacity>
 
@@ -87,6 +107,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
+  },
+  profileAvatarPlaceholder: {
+    backgroundColor: '#262626',
   },
 });
 

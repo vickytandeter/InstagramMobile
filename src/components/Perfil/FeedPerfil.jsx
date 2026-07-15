@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import DetallePublicacion from './DetallePublicacion';
+import Footer from '../Footer';
 
 export default function FeedPerfil() {
   const navigation = useNavigation();
@@ -35,10 +36,14 @@ export default function FeedPerfil() {
             listaRef.current?.scrollToIndex({ index, animated: false });
           }, 250);
         }}
+        style={styles.lista}
+        contentContainerStyle={styles.listaContenido}
         renderItem={({ item }) => (
           <DetallePublicacion publicacion={item} usuario={usuario} avatarUrl={avatarUrl} />
         )}
       />
+
+      <Footer />
     </View>
   );
 }
@@ -62,5 +67,13 @@ const styles = StyleSheet.create({
   },
   espacioHeader: {
     width: 26,
+  },
+  lista: {
+    flex: 1,
+  },
+  listaContenido: {
+    // Deja lugar abajo para que el Footer (fijo, position absolute) nunca
+    // tape la última publicación.
+    paddingBottom: 90,
   },
 });

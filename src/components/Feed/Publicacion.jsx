@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import ComentariosModal from './ComentariosModal';
 
 export default function Publicacion({ post, onSelect }) {
+  const navigation = useNavigation();
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(post.likes);
   const [mostrarComentarios, setMostrarComentarios] = useState(false);
@@ -13,25 +15,33 @@ export default function Publicacion({ post, onSelect }) {
     setLikes((prev) => (liked ? prev - 1 : prev + 1));
   };
 
+
+  const irAlPerfil = () => {
+    navigation.navigate('Perfil', {
+      usuario: post.usuario,
+      fotoUrl: post.fotoPerfil,
+      publicacionInicial: post,
+    });
+  };
+
   return (
     <>
-      <TouchableOpacity
-        activeOpacity={0.9}
-        style={styles.publicacion}
-        onPress={() => onSelect && onSelect(post)}
-      >
-        <View style={styles.publicacionUsuario}>
-            <Image source={{ uri: post.fotoPerfil }} style={styles.fotoPerfil} />
-            <View>
-              <Text style={styles.usuario}>@{post.usuario}</Text>
-              <Text style={styles.fecha}>{post.fecha}</Text>
-            </View>
+      <View style={styles.publicacion}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.publicacionUsuario}
+          onPress={irAlPerfil}
+        >
+          <Image source={{ uri: post.fotoPerfil }} style={styles.fotoPerfil} />
+          <View>
+            <Text style={styles.usuario}>@{post.usuario}</Text>
+            <Text style={styles.fecha}>{post.fecha}</Text>
           </View>
+        </TouchableOpacity>
         
         <Image source={{ uri: post.contenido }} style={styles.publicacionImg} />
-
+        
         <View style={styles.publicacionDesc}>
-          
           <Text style={styles.descripcion}>{post.descripcion}</Text>
 
           <View style={styles.publicacionInteracciones}>
@@ -58,7 +68,7 @@ export default function Publicacion({ post, onSelect }) {
             </View>
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
 
       <ComentariosModal
         visible={mostrarComentarios}

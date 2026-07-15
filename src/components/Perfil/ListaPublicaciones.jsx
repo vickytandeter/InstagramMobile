@@ -5,7 +5,7 @@ import Publicacion from './PublicacionPerfil';
 import { searchPost } from '../../services/api';
 import { PERFIL_HARDCODEADO } from './InfoPerfil';
 
-export default function ListaPublicaciones() {
+export default function ListaPublicaciones({ perfil, publicacionInicial }) {
   const navigation = useNavigation();
   const [publicaciones, setPublicaciones] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -30,15 +30,37 @@ export default function ListaPublicaciones() {
     };
   }, []);
 
-  // Al tocar una publicación se abre el feed con exactamente las mismas
+  const usuarioActivo = perfil?.usuario || PERFIL_HARDCODEADO.usuario;
+  const avatarActivo = perfil?.fotoUrl || PERFIL_HARDCODEADO.fotoUrl;
+
+  // La publicación desde la que se llegó (tocando el usuario en el feed)
+  // no viene en el mismo formato que las que trae searchPost, así que se
+  // adapta antes de mezclarla con el resto.
+  const publicacionInicialFormateada = publicacionInicial
+    ? {
+        id: publicacionInicial.id,
+        url: publicacionInicial.contenido,
+        likes: publicacionInicial.likes,
+        breeds: [],
+      }
+    : null;
+
+  const publicacionesAMostrar = publicacionInicialFormateada
+    ? [
+        publicacionInicialFormateada,
+        ...publicaciones.filter((p) => p.id !== publicacionInicialFormateada.id),
+      ]
+    : publicaciones;
+
+  // Al tocar una publicación se abre el detalle con exactamente las mismas
   // imágenes del perfil, arrancando en la que se tocó, y con el mismo
   // usuario/avatar que se ve en InfoPerfil.
   const irAlFeed = (publicacion) => {
-    navigation.navigate('Feed', {
-      publicaciones,
+    navigation.navigate('FeedPerfil', {
+      publicaciones: publicacionesAMostrar,
       publicacionId: publicacion.id,
-      usuario: PERFIL_HARDCODEADO.usuario,
-      avatarUrl: PERFIL_HARDCODEADO.fotoUrl,
+      usuario: usuarioActivo,
+      avatarUrl: avatarActivo,
     });
   };
 
@@ -60,7 +82,7 @@ export default function ListaPublicaciones() {
 
   return (
     <FlatList
-      data={publicaciones}
+      data={publicacionesAMostrar}
       keyExtractor={(item) => item.id}
       numColumns={3}
       scrollEnabled={false}

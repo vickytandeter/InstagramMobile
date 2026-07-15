@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import historias from '../../data/historias';
+import historiasBase from '../../data/historias';
+import { searchPost } from '../../services/api';
 
 function Historia({ item }) {
   return (
@@ -15,6 +17,28 @@ function Historia({ item }) {
 }
 
 export default function Historias() {
+  const [historias, setHistorias] = useState(historiasBase);
+
+  useEffect(() => {
+    let activo = true;
+
+    searchPost('', historiasBase.length)
+      .then((imagenes) => {
+        if (!activo || imagenes.length === 0) return;
+        setHistorias(
+          historiasBase.map((historia, index) => ({
+            ...historia,
+            avatar: imagenes[index % imagenes.length].url,
+          }))
+        );
+      })
+      .catch((error) => console.error('Error trayendo avatares de historias:', error));
+
+    return () => {
+      activo = false;
+    };
+  }, []);
+
   return (
     <FlatList
       data={historias}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Modal,
   View,
@@ -12,22 +12,48 @@ import {
   Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import comentariosMock from '../../data/comentarios';
+import comentariosBase from '../../data/comentarios';
+import { searchPost } from '../../services/api';
 
 export default function ComentariosModal({ visible, onClose }) {
-  const [comentarios, setComentarios] = useState(comentariosMock);
+  const [comentarios, setComentarios] = useState(comentariosBase);
   const [texto, setTexto] = useState('');
+
+  useEffect(() => {
+    let activo = true;
+
+    searchPost('', comentariosBase.length)
+      .then((imagenes) => {
+        if (!activo || imagenes.length === 0) return;
+        setComentarios(
+          comentariosBase.map((comentario, index) => ({
+            ...comentario,
+            avatar: imagenes[index % imagenes.length].url,
+          }))
+        );
+      })
+      .catch((error) => console.error('Error trayendo avatares de comentarios:', error));
+
+    return () => {
+      activo = false;
+    };
+  }, []);
 
   const publicarComentario = () => {
     if (texto.trim() === '') return;
-    const nuevo = {
-      id: Date.now().toString(),
-      usuario: 'vos',
-      avatar: 'https://i.pravatar.cc/100?img=11',
-      texto,
-    };
-    setComentarios((prev) => [...prev, nuevo]);
-    setTexto('');
+
+    searchPost('', 1)
+      .then(([gato]) => {
+        const nuevo = {
+          id: Date.now().toString(),
+          usuario: 'vos',
+          avatar: gato?.url,
+          texto,
+        };
+        setComentarios((prev) => [...prev, nuevo]);
+        setTexto('');
+      })
+      .catch((error) => console.error('Error trayendo avatar del comentario nuevo:', error));
   };
 
   return (

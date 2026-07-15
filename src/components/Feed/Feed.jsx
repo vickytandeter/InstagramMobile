@@ -1,24 +1,29 @@
 import { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
-import axios from 'axios';
 import Publicacion from './Publicacion';
 import Header from '../Header';
 import Footer from '../Footer';
 import Historias from './Historias';
+import { searchPost } from '../../services/api';
 
 export default function Feed({ onSelect }) {
   const [publicaciones, setPublicaciones] = useState([]);
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    axios
-      .get('https://api.thecatapi.com/v1/images/search?limit=15')
-      .then((response) => {
-        const publicacionesFormateadas = response.data.map((gato, index) => ({
+    let activo = true;
+
+    // Un pedido trae las fotos del contenido y otro las fotos de perfil de
+    // cada "usuario" del feed, todo desde la misma api de src/services/api.js.
+    Promise.all([searchPost('', 15), searchPost('', 15)])
+      .then(([contenidos, avatares]) => {
+        if (!activo) return;
+
+        const publicacionesFormateadas = contenidos.map((gato, index) => ({
           id: gato.id,
           contenido: gato.url,
           usuario: `cat_user_${index + 1}`,
-          fotoPerfil: `https://i.pravatar.cc/40?img=${index + 1}`,
+          fotoPerfil: avatares[index % avatares.length]?.url,
           descripcion: 'Un gatito muy lindo 🐱',
           fecha: 'Hace unas horas',
           likes: Math.floor(Math.random() * 500),
@@ -29,7 +34,13 @@ export default function Feed({ onSelect }) {
         setPublicaciones(publicacionesFormateadas);
       })
       .catch((error) => console.error('Error trayendo gatos:', error))
-      .finally(() => setCargando(false));
+      .finally(() => {
+        if (activo) setCargando(false);
+      });
+
+    return () => {
+      activo = false;
+    };
   }, []);
 
   return (
@@ -49,6 +60,7 @@ export default function Feed({ onSelect }) {
             <Publicacion post={item} onSelect={onSelect} />
           )}
           showsVerticalScrollIndicator={false}
+          style={styles.lista}
           contentContainerStyle={styles.listContent}
         />
       )}
@@ -63,8 +75,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000',
   },
+  lista: {
+    flex: 1,
+  },
   listContent: {
-    paddingBottom: 20,
+    // Deja lugar abajo para que el Footer (fijo, position absolute) nunca
+    // tape la última publicación.
+    paddingBottom: 90,
   },
   loadingContainer: {
     flex: 1,

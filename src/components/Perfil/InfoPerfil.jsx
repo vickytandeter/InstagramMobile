@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   handle: {
-    color: '#5b8ff9',
+    color: '#ffffff',
     fontSize: 14,
     marginTop: 12,
   },
