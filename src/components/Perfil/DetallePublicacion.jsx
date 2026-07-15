@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import ComentariosModal from '../Feed/ComentariosModal';
 
 const { width } = Dimensions.get('window');
 
@@ -8,6 +9,7 @@ const { width } = Dimensions.get('window');
 export default function DetallePublicacion({ publicacion, usuario, avatarUrl }) {
   const [likeado, setLikeado] = useState(false);
   const [likes, setLikes] = useState(publicacion.likes ?? 0);
+  const [mostrarComentarios, setMostrarComentarios] = useState(false);
 
   const alternarLike = () => {
     setLikeado((estabaLikeado) => {
@@ -35,36 +37,38 @@ export default function DetallePublicacion({ publicacion, usuario, avatarUrl }) 
       <Image source={{ uri: publicacion.url }} style={styles.imagen} />
 
       <View style={styles.acciones}>
-        <TouchableOpacity onPress={alternarLike} hitSlop={8} activeOpacity={0.7}>
+        <TouchableOpacity onPress={alternarLike} style={styles.boton}>
           <Ionicons
             name={likeado ? 'heart' : 'heart-outline'}
-            size={26}
-            color={likeado ? '#ed4956' : '#fff'}
-            style={styles.icono}
+            size={22}
+            color={likeado ? '#ED4956' : '#fff'}
           />
+          <Text style={styles.contador}>{likes}</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           onPress={() => setMostrarComentarios(true)}
           style={styles.boton}
         >
           <Ionicons name="chatbubble-outline" size={20} color="#fff" />
-          <Text style={styles.contador}>{post.comentarios}</Text>
+          <Text style={styles.contador}>{publicacion.comentarios ?? 0}</Text>
         </TouchableOpacity>
 
         <View style={styles.boton}>
           <Ionicons name="paper-plane-outline" size={20} color="#fff" />
-          <Text style={styles.contador}>{post.reenviados}</Text>
+          <Text style={styles.contador}>{publicacion.reenviados ?? 0}</Text>
         </View>
-        <View style={styles.espacio} />
-        <Ionicons name="bookmark-outline" size={24} color="#fff" />
       </View>
-
-      <Text style={styles.likesTexto}>{likes} me gusta</Text>
 
       <Text style={styles.caption}>
         <Text style={styles.usuarioCaption}>{usuario} </Text>
         {descripcion}
       </Text>
+
+      <ComentariosModal
+        visible={mostrarComentarios}
+        onClose={() => setMostrarComentarios(false)}
+      />
     </View>
   );
 }
@@ -98,21 +102,18 @@ const styles = StyleSheet.create({
   },
   acciones: {
     flexDirection: 'row',
-    alignItems: 'center',
     paddingHorizontal: 12,
     paddingTop: 10,
   },
-  icono: {
-    marginRight: 14,
+  boton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 18,
   },
-  espacio: {
-    flex: 1,
-  },
-  likesTexto: {
-    color: '#fff',
-    fontWeight: '600',
-    paddingHorizontal: 12,
-    marginTop: 8,
+  contador: {
+    marginLeft: 4,
+    fontSize: 12,
+    color: '#f5f5f5',
   },
   caption: {
     color: '#fff',

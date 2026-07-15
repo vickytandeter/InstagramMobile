@@ -5,9 +5,9 @@ import { searchPost } from '../../services/api';
 
 const DESTACADAS_BASE = [
   { id: 'nueva', esNueva: true, etiqueta: 'Nuevo' },
-  { id: '1', etiqueta: '❤️🤍' },
-  { id: '2', etiqueta: '🇾🇪' },
-  { id: '3', etiqueta: '👤' },
+  { id: '1', etiqueta: '.' },
+  { id: '2', etiqueta: '.' },
+  { id: '3', etiqueta: '.' },
 ];
 
 export default function Destacadas({ destacadas: destacadasProp }) {

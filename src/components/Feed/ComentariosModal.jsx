@@ -18,9 +18,18 @@ import { searchPost } from '../../services/api';
 export default function ComentariosModal({ visible, onClose }) {
   const [comentarios, setComentarios] = useState(comentariosBase);
   const [texto, setTexto] = useState('');
+  const [yaCargado, setYaCargado] = useState(false);
 
   useEffect(() => {
+    // Antes esto se disparaba apenas se montaba el componente, y como
+    // Publicacion.jsx renderiza un ComentariosModal por cada post del feed
+    // (aunque esté cerrado), terminaba pegándole a la API 15 veces en
+    // simultáneo y devolvía 429. Ahora solo pide avatares la primera vez
+    // que el modal se abre de verdad.
+    if (!visible || yaCargado) return;
+
     let activo = true;
+    setYaCargado(true);
 
     searchPost('', comentariosBase.length)
       .then((imagenes) => {
@@ -37,7 +46,7 @@ export default function ComentariosModal({ visible, onClose }) {
     return () => {
       activo = false;
     };
-  }, []);
+  }, [visible, yaCargado]);
 
   const publicarComentario = () => {
     if (texto.trim() === '') return;
