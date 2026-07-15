@@ -44,7 +44,7 @@ export default function Feed({ onSelect }) {
   }, []);
 
   return (
-    <View style={styles.feed}>
+    <SafeAreaView style={styles.safeArea}>
       <Header/>
 
       {cargando ? (
@@ -66,12 +66,12 @@ export default function Feed({ onSelect }) {
       )}
 
       <Footer/>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  feed: {
+  safeArea: {
     flex: 1,
     backgroundColor: '#000',
   },

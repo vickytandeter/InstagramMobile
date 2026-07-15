@@ -17,7 +17,7 @@ export default function FeedPerfil() {
   );
 
   return (
-    <View style={styles.pantalla}>
+    <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={10}>
           <Ionicons name="arrow-back" size={26} color="#fff" />
@@ -44,12 +44,12 @@ export default function FeedPerfil() {
       />
 
       <Footer />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  pantalla: {
+  safeArea: {
     flex: 1,
     backgroundColor: '#000',
   },
