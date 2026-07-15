@@ -43,8 +43,18 @@ export default function DetallePublicacion({ publicacion, usuario, avatarUrl }) 
             style={styles.icono}
           />
         </TouchableOpacity>
-        <Ionicons name="chatbubble-outline" size={24} color="#fff" style={styles.icono} />
-        <Ionicons name="paper-plane-outline" size={24} color="#fff" style={styles.icono} />
+        <TouchableOpacity
+          onPress={() => setMostrarComentarios(true)}
+          style={styles.boton}
+        >
+          <Ionicons name="chatbubble-outline" size={20} color="#fff" />
+          <Text style={styles.contador}>{post.comentarios}</Text>
+        </TouchableOpacity>
+
+        <View style={styles.boton}>
+          <Ionicons name="paper-plane-outline" size={20} color="#fff" />
+          <Text style={styles.contador}>{post.reenviados}</Text>
+        </View>
         <View style={styles.espacio} />
         <Ionicons name="bookmark-outline" size={24} color="#fff" />
       </View>
